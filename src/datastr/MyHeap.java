@@ -56,7 +56,7 @@ public class MyHeap<T> {
 		if(isEmpty()) throw new Exception("List is empty.");
 		
 		T prioElement = heap[0];
-		heap[0] = heap[counter];
+		heap[0] = heap[counter-1];
 		counter--;
 		reheapDown(0);
 		return prioElement;
@@ -66,6 +66,8 @@ public class MyHeap<T> {
 	public void print2() throws Exception {
 		if(isEmpty()) throw new Exception("Array is empty and it "
 				+ "is not possible to print elements");
+		
+		printRecursiveHelp(0);
 	}
 
 	private void printRecursiveHelp(int index) {
@@ -77,12 +79,12 @@ public class MyHeap<T> {
 		
 		if (leftChildIndex < counter) {
 			T leftChild = heap[leftChildIndex];
-			System.out.println("LC: " + leftChild + " [" + element + "]");
+			System.out.print("LC: " + leftChild + " [" + element + "]");
 			printRecursiveHelp(leftChildIndex);
 		}
-		else {
+		if (rightChildIndex < counter){
 			T rightChild = heap[rightChildIndex];
-			System.out.println("RC: " + rightChild + " [" + element + "]");
+			System.out.print("RC: " + rightChild + " [" + element + "]");
 			printRecursiveHelp(rightChildIndex);
 		}
 	}
